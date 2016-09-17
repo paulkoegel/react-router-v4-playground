@@ -14,26 +14,37 @@ class GithubUser extends Component {
   }
 
   componentDidMount() {
-    window.fetch(`https://api.github.com/users/${this.props.slug}`, fetchConfig).then(
+    this.fetchUser(this.props.params.id);
+  }
+
+  componentWillReceiveProps(nextProps) {
+    if (nextProps.params.id !== this.props.params.id) {
+      this.fetchUser(nextProps.params.id);
+    }
+  }
+
+  fetchUser(slug) {
+    window.fetch(`https://api.github.com/users/${slug}`, fetchConfig).then(
       (response) => {
         if(response.ok) {
           response.json().then((json) => {
             this.setState(json);
           });
         } else {
-          console.log("Ajax response was not okay");
+          console.error("Ajax response was not okay.", response);
         }
       }
     ).catch((error) => {
-      console.log("Ajax error:", error);
+      console.error("Ajax error:", error);
     });
   }
 
   render() {
     return(
-      <h1>
-        {this.state.name}
-      </h1>
+      <div className="GithubUser_box">
+        <h1 className>{ this.state.name }</h1>
+        <img src={ this.state.avatar_url } className="GithubUser_avatar" />
+      </div>
     );
   }
 }

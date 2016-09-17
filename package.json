@@ -2,6 +2,7 @@
   "name": "ethereum-react-client",
   "version": "0.1.0",
   "private": true,
+  "homepage": "https://paulkogel.github.io/react-router-v4-playground/",
   "devDependencies": {
     "react-scripts": "0.4.1"
   },

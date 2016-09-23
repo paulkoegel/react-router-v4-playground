@@ -1,13 +1,15 @@
 import React from 'react';
-import { BrowserRouter, Match, Link, Miss } from 'react-router';
+import { HashRouter, Match, Link, Miss } from 'react-router';
 import GithubUser from './components/GithubUser';
 import Home from './components/Home';
 import RouteNotFound from './components/RouteNotFound';
 import './App.css';
 
+const Router = HashRouter;
+
 const App = () => {
   return (
-    <BrowserRouter>
+    <Router>
       <div className="MainWrapper">
         <ul className="Navigation">
           <li><Link to="/">Home</Link></li>
@@ -21,7 +23,7 @@ const App = () => {
           <Miss component={RouteNotFound} />
         </div>
       </div>
-    </BrowserRouter>
+    </Router>
   )
 };
 
